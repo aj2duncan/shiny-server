@@ -10,7 +10,7 @@ output:
 runtime: shiny
 ---
 #Introduction
-This is an R Markdown document. I created it in RStudio using Rmarkdown, knitr and shiny. Unfortunately it can't produce 
+This is an R Markdown document. I created it in RStudio using Rmarkdown, knitr and shiny. It is hosted on my website.
 
 #The Interactive Bit
 In the section below you can select a dataset and the plot will change automatically. I will add more functions once I get a chance to sit down and think about what else I might want to do.
