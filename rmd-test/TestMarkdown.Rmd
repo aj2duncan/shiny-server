@@ -1,0 +1,59 @@
+---
+title: "Test of Interactive Element in HTML Document"
+author: "Andrew Duncan"
+date: "16 June 2015"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+runtime: shiny
+---
+#Introduction
+This is an R Markdown document. I created it in RStudio using Rmarkdown, knitr and shiny. Unfortunately it can't produce 
+
+#The Interactive Bit
+In the section below you can select a dataset and the plot will change automatically. I will add more functions once I get a chance to sit down and think about what else I might want to do.
+
+```{r, echo = FALSE}
+library(datasets)
+library(ggplot2)
+library(shiny)
+shinyApp(
+  
+  ui = fluidPage(
+    selectInput("Dataset", "Choose a Dataset", 
+                choices = list("Pressure" = 1,
+                               "Orange Trees" = 2)),
+    plotOutput("Dataplot"),
+    htmlOutput("Explanation")
+  ),
+  
+  server = function(input, output) {
+    
+    output$Dataplot = renderPlot({
+      if (input$Dataset == 1) {
+        ggplot(pressure, aes(x = temperature, y = pressure)) + 
+          geom_point()
+      }else{
+        ggplot(Orange, aes(x = age, y = circumference, group = factor(Tree), colour = factor(Tree),
+                        linetype = factor(Tree))) + 
+          geom_line()
+      }
+    })
+    
+    output$Explanation = renderUI({
+      if (input$Dataset == 1) { 
+        p("You have selected the pressure dataset and the graph shows how the vapour pressure of Mercury changes with temperature. More information can be found ",
+        a("here", target = "_blank", href = "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/pressure.html"))
+      }else{
+        p("You have selected the orange trees dataset and the graph shows the growth rate of five orange trees. More information can be found ",
+        a("here", target = "_blank", href = "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Orange.html"))
+      }
+    })
+  },
+  
+  options = list(height = 600)
+)
+```
+
