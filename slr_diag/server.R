@@ -1,16 +1,8 @@
 # Derived from http://econometricsbysimulation.shinyapps.io/OLS-App/
 
-# set mirror
-options(repos=structure(c(CRAN="http://cran.rstudio.com")))
-
-if (!("shiny" %in% names(installed.packages()[,"Package"]))) {install.packages("shiny")}
-suppressMessages(library(shiny, quietly = TRUE))
-
-if (!("openintro" %in% names(installed.packages()[,"Package"]))) {install.packages("openintro")}
-suppressMessages(library(openintro, quietly = TRUE))
-
-if (!("plotrix" %in% names(installed.packages()[,"Package"]))) {install.packages("plotrix")}
-suppressMessages(library(plotrix, quietly = TRUE))
+library(shiny)
+library(openintro)
+library(plotrix)
 
 input <- list(rseed=1)
 

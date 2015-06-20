@@ -5,11 +5,8 @@ source('./helper/normTail.R')
 # set mirror
 options(repos=structure(c(CRAN="http://cran.rstudio.com")))
 
-if (!("shiny" %in% names(installed.packages()[,"Package"]))) {install.packages("shiny")}
-suppressMessages(library(shiny, quietly = TRUE))
-
-if (!("openintro" %in% names(installed.packages()[,"Package"]))) {install.packages("openintro")}
-suppressMessages(library(openintro, quietly = TRUE))
+library(shiny)
+library(openintro)
 
 defaults = list("tail" = "lower",
                 "lower_bound" = "open",

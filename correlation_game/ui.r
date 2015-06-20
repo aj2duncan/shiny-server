@@ -1,10 +1,8 @@
 #ui.R
 
-install.packages("ggplot2")
-install.packages("ellipse")
-require(shiny)
-require(ggplot2)
-require(ellipse)
+library(shiny)
+library(ggplot2)
+library(ellipse)
 
 
 shinyUI(fluidPage(
