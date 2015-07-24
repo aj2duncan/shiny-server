@@ -48,13 +48,14 @@ shinyUI(fluidPage(
                \\(d\\) the death rates of the prey and predators respectively.
                "),
         tags$p("The first plot shows the number of predators and prey as 
-               time progresses.")
+               time progresses. Change the variables and see how the numbers
+               change. Can you make either species die out?")
       ),
       plotOutput("plot_numbers"),
       tags$div(
         tags$p("The second plot shows the phase portrait of the system. The
                numbers of prey are plotted along the horizontal, with the 
-               predators along the vertical.")
+               predators along the vertical. Where is the equilibrium point?")
       ),
       plotOutput("phase_portrait")
     )
