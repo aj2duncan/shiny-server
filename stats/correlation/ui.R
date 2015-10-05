@@ -4,7 +4,7 @@ library(shiny)
 shinyUI(pageWithSidebar(
   
   #  Application title
-  headerPanel("Diagnostics for simple linear regression"),
+  headerPanel("Correlation and Linear Regression"),
   
   sidebarPanel(
     
