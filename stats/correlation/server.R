@@ -74,7 +74,7 @@ shinyServer(function(input, output) {
          type="n",
          xlab="x",
          ylab="y",
-         main=paste0("Regression Model\n","(R = ", corr.coef,", ", "R-squared = ", r.squared,")"))
+         main=paste0("Regression Model\n","(Correlation = ", corr.coef,")"))
          
 
     newx <- seq(min(data1$x), max(data1$x), length.out=400)
@@ -102,7 +102,7 @@ shinyServer(function(input, output) {
   })
   
   output$residuals <- renderPlot({
-    par(mfrow=c(1,3), cex.main=2, cex.lab=2, cex.axis=2, mar=c(4,5,2,2))
+    par(mfrow=c(1,2), cex.main=2, cex.lab=2, cex.axis=2, mar=c(4,5,2,2))
     residuals = summary(lmResults())$residuals
     predicted = predict(lmResults(), newdata = data.frame(x=mydata()$x))
     plot(residuals ~ predicted, 
@@ -114,7 +114,5 @@ shinyServer(function(input, output) {
     hist(residuals, main="Histogram of Residuals", xlab="Residuals", 
          col=COL[1,2], prob = TRUE, ylim = c(0,max(max(d), max(h$density))))
     lines(density(residuals), col = COL[1], lwd = 2)
-    qqnorm(residuals, pch=19, col = COL[1,2], main = "Normal Q-Q Plot of Residuals")
-    qqline(residuals, col = COL[1], lwd = 2)
-  }, height=280 )
+  })
 })
