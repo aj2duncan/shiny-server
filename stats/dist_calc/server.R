@@ -1,4 +1,4 @@
-source('functions/normTail.R')
+source('functions/normTail.r')
 source('functions/functions.r')
 
 library(shiny)
