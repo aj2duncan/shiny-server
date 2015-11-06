@@ -67,7 +67,7 @@ shinyServer(function(input, output) {
     par(cex.main=1.5, cex.lab=1.5, cex.axis=1.5, mar = c(4,4,4,1))
  
     r.squared = round(summary(lmResults())$r.squared, 4)
-    corr.coef = round(sqrt(r.squared), 4)
+    corr.coef = round(cor(x, y, method = "pearson"), 4)
     
     plot(c(min(x),max(x)) 
          ,c(min(y,yline),max(y,yline)), 
