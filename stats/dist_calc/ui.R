@@ -1,6 +1,7 @@
 library(shiny)
+library(shinythemes)
 
-shinyUI(pageWithSidebar(
+shinyUI(fluidPage(theme = shinytheme("united"),
   
   headerPanel("Distribution Calculator"),
   

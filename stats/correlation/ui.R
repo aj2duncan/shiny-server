@@ -1,7 +1,8 @@
 library(shiny)
+library(shinythemes)
 
 # Define UI for OLS demo application
-shinyUI(pageWithSidebar(
+shinyUI(fluidPage(theme = shinytheme("united"),
   
   #  Application title
   headerPanel("Correlation and Linear Regression"),
