@@ -18,7 +18,7 @@ shinyUI(fluidPage(theme = shinytheme("united"),
                       shown in the plot below.'),
              tags$p('Remember that data which is perfectly correlated 
                       will have a correlation coefficient of 1 or -1 and 
-                      look like either \\(y = x\\) or \\(y = -x\\)'),
+                      look like a perfectly straight line.'),
              tags$p('If you get with 0.1 of the actual correlation
                     you will be created with the right answer.')
             ) # finishing div
