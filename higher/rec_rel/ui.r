@@ -23,15 +23,12 @@ shinyUI(fluidPage(theme = shinytheme("united"),
                   mainPanel(
                     withMathJax(
                       helpText("Use this Shiny app to investigate the behaviour of recurrence relations and how they approach their limit (if they have one)."),
-                      helpText("The plots below show the values of the recurrence relation you've chosed in two ways."),
-                      helpText("The first shows the value of the recurrence relation as the terms increase whilst the second plot shows the sequence as coordinates in the form \\((u_n, u_{n+1})\\). In both plots the points are labelled with the term in the sequence they represent. \\((1^{st}, 2^{nd}, 3^{rd}, \\ldots)\\)"),
+                      helpText("The plot below shows the values of the recurrence relation as the terms increase. The points are labelled with the term in the sequence they represent. \\((1^{st}, 2^{nd}, 3^{rd}, \\ldots)\\)"),
                       helpText("Remember that for a recurrence relation of the form \\(u_{n+1} = au_n + b\\) the limit is given by $$L = \\frac{b}{1-a}$$ and only exists when $$ -1 < a < 1.$$")
                       ),
-                    column(width = 6, 
-                           plotOutput("Terms_plot")),
-                    column(width = 6,
-                           plotOutput("Regression_plot")),
+                    plotOutput("Terms_plot"),
+                    textOutput("text"),
                     withMathJax(
-                      helpText("You should see that if you get a recurrence relation with a limit, the first plot tends to a horizontal line and the second just ends up in one place. This is because the first plot is plotting the points \\((n, L)\\) and the second is plotting the \\((L, L)\\) again and again and again."))
+                      helpText("You should see that if you get a recurrence relation with a limit the plot tends to a horizontal line. This is because we are plotting the points \\((n, L)\\) and \\(L\\) is always the same."))
                   ) # finishing mainPanel
 ))
