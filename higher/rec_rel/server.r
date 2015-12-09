@@ -2,6 +2,7 @@
 library(shiny)
 library(ggplot2)
 library(scales)
+library(latex2exp)
 
 u_n = c(1:101)
 u_n_plus_one = c()
@@ -47,7 +48,8 @@ shinyServer(function(input, output) {
     p1 = ggplot(rec_rel, aes(x = terms, y = u_n, label = terms)) + 
       geom_point() +
       geom_text(aes(label = terms, hjust = 0, vjust = 0)) + 
-      labs(x = expression(n), y = expression(u[n]),
+      labs(x = "Value of n (or term in sequence)", 
+           y = TeX("Value of u_n"),
            title = "Recurrence Relation as terms increase") +
       theme(axis.title = element_text(size = 14),
             plot.title = element_text(size = 20, face = "bold")) + 
