@@ -2,10 +2,11 @@ library(shiny)
 
 # which fields get saved 
 fieldsAll = c("course", "course_enjoyment", "course_enjoyment_comment",
-              "course_speed", "course_assessments", 
+              "course_speed", "course_teaching", "course_equipment", 
+              "course_variation", "course_assessments", 
               "course_assessments_comment", "statistics",
-              "statistics_comment", "course_best", "course_improvement",
-              "course_change")
+              "statistics_comment", "course_best", "course_worst", 
+              "course_improvement", "course_change")
 
 # which fields are mandatory
 fieldsMandatory = c("course")
