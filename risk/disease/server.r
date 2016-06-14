@@ -167,10 +167,11 @@ shinyServer(function(input, output, session) {
         out_long = gather(data, subpop, number, S:R)
         ggplot(out_long, aes(x = time, y = number, colour = subpop)) + 
           geom_line(size = 1) + 
-          labs(x = "Time", y = "Number of Individuals",
-               title = "Number of Susceptible and Infected against Time") +
-          scale_colour_discrete(name = "Type of Individual", labels = c(
-            "Susceptible", "Infected", "Resistant")) + 
+          labs(x = "Time", y = "Number of Individuals", title = 
+                 "Number of Susceptible, Infected and Resistant against Time") +
+          scale_colour_discrete(name = "Type of Individual", 
+                                labels = c("Susceptible", "Infected", 
+                                           "Resistant")) + 
         theme(text = element_text(size = 18))
     }
   })
