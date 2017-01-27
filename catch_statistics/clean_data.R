@@ -4,44 +4,62 @@
 library(readr)
 library(dplyr)
 library(tidyr)
-library(xts)
-library(dygraphs)
+library(ggplot2)
+library(plotly)
 
 # load data
-rod_catch = read_csv("data/rod_catch.csv", col_types = "cddcdcddddddddddddd")
+rod_catch = read_csv("data/rod_catch.csv", 
+                     col_types = "cddcdcddddddddddddd")
 
 # remove some columns and sort by year, month
-rod_catch = select(rod_catch, -`Report Order`, -Region, -ID) %>%
-  arrange(District_Name, Year, Month_Number)
+rod_catch = select(rod_catch, -`Report Order`, -Region, -ID,
+                   -Month_Number, -Month_Name) %>%
+  arrange(District_Name, Year) %>%
+  select(District_Name, Year, contains("Number"))
 
-# data_frame of all Districts, years, months
-# I'm sure there is a faster way to do this but this works just fine
-all_ym = data.frame(Year = c(), Month_Number = c())
-for (Years in c(min(rod_catch$Year):max(rod_catch$Year))) {
-  for (Districts in unique(rod_catch$District_Name)) {
-    this_ym = data.frame(District_Name = rep(Districts, 12), 
-                         Year = rep(Years, 12), 
-                         Month_Number = c(1:12))
-    all_ym = rbind(all_ym, this_ym)  
-  }
-}
+# remove all data before 1960 and after 2014
+rod_catch = filter(rod_catch, Year >= 1960, Year <= 2014)
 
 
-all_ym = tbl_df(all_ym)
+# calculate totals
+tot_rod_catch = rod_catch %>% 
+  group_by(District_Name, Year) %>%
+  summarise_all(sum) 
 
-# join to produce complete time series
-rod_catch_ts = full_join(all_ym, rod_catch) %>%
-  arrange(District_Name, Year, Month_Number)
+# construct long dataset
+tot_rod_catch_long = tot_rod_catch %>%
+  gather(key = Species, value = Catch, 
+         Wild_Salmon_Number:Farmed_Grilse_Number)
 
-# create time series for Wild Salmon
-wild_salmon_ts = rod_catch_ts %>%
-  select(District_Name, Year, Month_Number, Wild_Salmon_Number) %>%
-  spread(key = District_Name, value = Wild_Salmon_Number, fill = NA) %>%
-  select(-Year, -Month_Number) %>%
-  select(Clyde) %>%
-  ts(start = c(1952, 1), end = c(2015, 12), frequency = 12) %>%
-  as.xts()
+# choose species
+in_Species = "Wild_Salmon_Number"
 
-# plot time series
-dygraph(wild_salmon_ts) %>%
-  dyRangeSelector(dateWindow = c("2010-01-01", "2015-12-31"))
+# pick just that Species
+tot_rod_catch_long = tot_rod_catch_long %>%
+  filter(Species == in_Species)
+
+# count the number of entries to ensure 
+# the rivers have all the years
+full_results = tot_rod_catch_long %>%
+  count(District_Name) %>%
+  filter(n == 55)
+
+in_District = sample(full_results$District_Name, size = 4)
+
+# remove the rivers without all years
+# then pick chosen districts
+
+ts_rod_catch = tot_rod_catch_long %>%
+  filter(District_Name %in% full_results$District_Name) %>%
+  filter(District_Name %in% in_District) %>%
+  select(-Species) %>%
+  ungroup()
+
+p = ts_rod_catch %>%
+  ggplot(aes(x = Year, y = Catch, colour = District_Name)) +
+  geom_line() +
+  geom_smooth(se = FALSE, linetype = "dashed") +
+  scale_colour_discrete(name = "River")
+
+
+ggplotly(p)
