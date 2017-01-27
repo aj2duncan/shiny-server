@@ -31,6 +31,8 @@ tot_rod_catch_long = tot_rod_catch %>%
   gather(key = Species, value = Catch, 
          Wild_Salmon_Number:Farmed_Grilse_Number)
 
+write_csv(tot_rod_catch_long, "data/rod_catch_clean.csv")
+
 # choose species
 in_Species = "Wild_Salmon_Number"
 
