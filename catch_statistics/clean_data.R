@@ -29,12 +29,14 @@ tot_rod_catch = rod_catch %>%
 # construct long dataset
 tot_rod_catch_long = tot_rod_catch %>%
   gather(key = Species, value = Catch, 
-         Wild_Salmon_Number:Farmed_Grilse_Number)
+         Wild_Salmon_Number:Farmed_Grilse_Number) %>%
+  mutate(Species = str_replace_all(Species, "_", " ")) %>%
+  mutate(Species = str_replace_all(Species, " Number", ""))
 
 write_csv(tot_rod_catch_long, "data/rod_catch_clean.csv")
 
 # choose species
-in_Species = "Wild_Salmon_Number"
+in_Species = "Wild Salmon"
 
 # pick just that Species
 tot_rod_catch_long = tot_rod_catch_long %>%
