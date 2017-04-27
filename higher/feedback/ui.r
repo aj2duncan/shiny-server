@@ -32,7 +32,7 @@ shinyUI(fluidPage(theme = shinytheme("united"),
         div(
           id = "form",
           selectInput("course", labelMandatory("Class"), 
-                      choices = c("Higher", "National 4")),
+                      choices = c("Higher", "Maths for Science")),
           sliderInput("course_enjoyment", 
                       p("Did you enjoy the course?", br(), 
                       "(1: Not at all - 5: Completely)"), 
