@@ -1,15 +1,12 @@
 # load packages
 library(shiny)
-library(readr)
-library(dplyr)
-library(tidyr)
-library(ggplot2)
+library(tidyverse)
 library(plotly)
 library(shinythemes)
 
 
 # read in data
-tot_rod_catch_long = read_csv("data/rod_catch_clean.csv")
+tot_rod_catch_long = read_csv("data/rod_catch_clean.csv", col_types = c("cdcd"))
 
 ui <- fluidPage(theme = shinytheme("united"),
   titlePanel("Scottish River Rod Catch Statistics"),
@@ -37,8 +34,9 @@ ui <- fluidPage(theme = shinytheme("united"),
            fluidRow(
              # year
              column(4, sliderInput(inputId = "year", label = c("Years"), 
-                                   min = 1960, max = 2014, 
-                                   value = c(1960, 2014), sep = ""),
+                                   min = 1960, max = 2015, 
+                                   value = c(1960, 2015), sep = "",
+                                   width = "100%", ticks = FALSE),
              p(strong("Please Note:"), "The plot will respond automatically to changes in the range of years.")),
              # species
              column(4, 
@@ -103,7 +101,8 @@ server <- function(input, output, session) {
     p =  filter_catch()[[1]] %>%
       rename(River = District_Name) %>%
       ggplot(aes(x = Year, y = Catch, colour = River)) +
-      geom_line() +
+      geom_line(linetype = "dotted", alpha = 0.4) +
+      geom_point() +
       ggtitle(paste("Total Rod Catch of", filter_catch()[[2]], 
                     "from", input$year[1], "to", input$year[2])) +
       ylab("Total Catch") +

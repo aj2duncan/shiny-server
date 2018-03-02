@@ -1,14 +1,11 @@
 # script to clean data for catch and turn it into an xts object
 
 # load packages
-library(readr)
-library(dplyr)
-library(tidyr)
-library(ggplot2)
+library(tidyverse)
 library(plotly)
 
 # load data
-rod_catch = read_csv("data/rod_catch.csv", 
+rod_catch = read_csv("data/rod_catch_2015.csv", 
                      col_types = "cddcdcddddddddddddd")
 
 # remove some columns and sort by year, month
@@ -17,8 +14,8 @@ rod_catch = select(rod_catch, -`Report Order`, -Region, -ID,
   arrange(District_Name, Year) %>%
   select(District_Name, Year, contains("Number"))
 
-# remove all data before 1960 and after 2014
-rod_catch = filter(rod_catch, Year >= 1960, Year <= 2014)
+# remove all data before 1960 and after 2015
+rod_catch = filter(rod_catch, Year >= 1960, Year <= 2015)
 
 
 # calculate totals
@@ -31,7 +28,8 @@ tot_rod_catch_long = tot_rod_catch %>%
   gather(key = Species, value = Catch, 
          Wild_Salmon_Number:Farmed_Grilse_Number) %>%
   mutate(Species = str_replace_all(Species, "_", " ")) %>%
-  mutate(Species = str_replace_all(Species, " Number", ""))
+  mutate(Species = str_replace_all(Species, " Number", "")) %>%
+  mutate(Catch = as.double(Catch))
 
 write_csv(tot_rod_catch_long, "data/rod_catch_clean.csv")
 
