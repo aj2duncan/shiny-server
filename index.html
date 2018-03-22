@@ -1,75 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 <head>
 	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta https-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	<title>shiny.aj2duncan.com</title>
 	<!-- Bootstrap -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+<!--	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet"> -->
+	<link href = "css/sketchy/bootstrap.css" rel = "stylesheet">
     <link href="css/footer.css" rel="stylesheet">
 	<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-	<br/>
 	<div class="container">
 	<div class = "row">
 	  <div class = "col-md-12">
 	    <h1>Welcome to my Shiny Server</h1>
-        <p>Each of the courses below has a number of apps that are associated with them. Click on the images to visit the apps.</p>
+        <p>Below you will find links to various apps for both teaching and research purposes. All the code is hosted on <a href = "https://github.com/aj2duncan/shiny-server" target = "_blank">github</a>. For my main website go to <a href = "https://www.aj2duncan.com">aj2duncan.com</a>.</p>
     </div>
   </div>
-  <div class = "row">
-    <div class = "col-md-12">
-      <h2>Risk and Introduction to Modelling</h2>
-    </div>
-  </div>	  
-  <div class = "row">
-    <div class = "col-md-6 col-sm-6 col-xs-6">
-      <a href="https://shiny.aj2duncan.com/risk/lotka-volterra/" target = "_blank"><img src = "images/lv.jpg" class = "img-responsive"> </a>
+  
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#teaching">Teaching</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#research">Research</a>
+    </li>
+  </ul>
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade show active" id="teaching">
+      <br/>
+      <div class = "row">
+        <div class = "col-md-12">
+          <p>The apps below are mainly intended for teaching/demo purposes.</p>
+        </div></div>  
+    <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#risk">Risk and Modelling</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#statistics">Statistics</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#mathematics">Mathematics</a>
+    </li>
+  </ul>
+    <div id="myTabContent-nested" class="tab-content">
+     <div class="tab-pane fade show active" id="risk">
+    <div class = "row">
+    <div class = "col-md-4 col-sm-4 col-xs-12">
+      <h2> Lotka-Volterra </h2>
+      <a href="https://shiny.aj2duncan.com/risk/lotka-volterra/" target = "_blank"><img src = "images/lv.jpg" class = "img-fluid"> </a>
       <p>Examine the <a href="https://shiny.aj2duncan.com/risk/lotka-volterra/" target = "_blank">Lotka-volterra</a> system of equations to model predator-prey populations.</p>
     </div>
-    <div class = "col-md-6 col-sm-6 col-xs-6">
-      <a href="https://shiny.aj2duncan.com/risk/disease/" target = "_blank"><img src = "images/sir.jpg" class = "img-responsive"> </a>
+    <div class = "col-md-4 col-sm-4 col-xs-12">
+      <h2> Disease Modelling </h2>
+      <a href="https://shiny.aj2duncan.com/risk/disease/" target = "_blank"><img src = "images/sir.jpg" class = "img-fluid"> </a>
       <p>Examine some simple <a href="https://shiny.aj2duncan.com/risk/disease/" target = "_blank">disease</a> models. See how some straight forward changes can make a big difference to the spread of the disease.</p>
     </div>
   </div>
+  </div>  
+  <div class="tab-pane fade" id="statistics">
   <div class = "row">
-    <div class = "col-md-12">
-      <h2>Higher Statistics Unit</h2>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col-md-4 col-sm-4 col-xs-4">
-      <a href="https://shiny.aj2duncan.com/stats/correlation/" target = "_blank"><img src = "images/correlation.jpg" class = "img-responsive"> </a>
+    <div class = "col-md-4 col-sm-4 col-xs-12">
+      <a href="https://shiny.aj2duncan.com/stats/correlation/" target = "_blank"><img src = "images/correlation.jpg" class = "img-fluid"> </a>
       <p>Is correlation thing only thing you need to judge the fit of linear regression? Have a look at this <a href="https://shiny.aj2duncan.com/stats/correlation/" target = "_blank">app</a> and see what you think. (modified from <a href="https://stat.duke.edu/%7Emc301/shinyed/" target = "_blank">Shiny Ed</a>)</p>
     </div>
-    <div class = "col-md-4 col-sm-4 col-xs-4">
-      <a href="https://shiny.aj2duncan.com/stats/dist_calc/" target = "_blank"><img src = "images/dist_calc.jpg" class = "img-responsive"> </a>
+    <div class = "col-md-4 col-sm-4 col-xs-12">
+      <a href="https://shiny.aj2duncan.com/stats/dist_calc/" target = "_blank"><img src = "images/dist_calc.jpg" class = "img-fluid"> </a>
       <p><a href="https://shiny.aj2duncan.com/stats/dist_calc/" target = "_blank">This</a> is a distribution calculator (modified from <a href="https://stat.duke.edu/%7Emc301/shinyed/" target = "_blank">Shiny Ed</a>) that allows you to conduct hypothesis testing amongst other things.</p>
     </div>
-    <div class = "col-md-4 col-sm-4 col-xs-4">
-      <a href="https://shiny.aj2duncan.com/stats/guess_the_correlation/" target = "_blank"><img src = "images/guess.jpg" class = "img-responsive"> </a>
+    <div class = "col-md-4 col-sm-4 col-xs-12">
+      <a href="https://shiny.aj2duncan.com/stats/guess_the_correlation/" target = "_blank"><img src = "images/guess.jpg" class = "img-fluid"> </a>
       <p>Can you <a href="https://shiny.aj2duncan.com/stats/guess_the_correlation/" target = "_blank">guess the correlation</a> (modified from <a href="https://stat.duke.edu/%7Emc301/shinyed/" target = "_blank">Shiny Ed</a>) in a quick game to help identify the value of the correlation coefficient from some random data.</p>
     </div>
   </div>
-  <div class = "row">
-    <div class = "col-md-12">
-      <h2>Higher Mathematics</h2>
-    </div>
   </div>
+    <div class="tab-pane fade" id="mathematics">
   <div class = "row">
-    <div class = "col-md-6 col-sm-6 col-xs-6">
-      <a href="https://shiny.aj2duncan.com/higher/rec_rel/" target = "_blank"><img src = "images/rec_rel.jpg" class = "img-responsive"> </a>
+    <div class = "col-md-4 col-sm-4 col-xs-12">
+      <a href="https://shiny.aj2duncan.com/higher/rec_rel/" target = "_blank"><img src = "images/rec_rel.jpg" class = "img-fluid"> </a>
       <p>Investigate recurrence relations and their limits in <a href = "https://shiny.aj2duncan.com/higher/rec_rel/" target = "_blank">this</a> Shiny app.</p>
     </div> 
+  </div>  
+    </div>
+    </div>
+    </div>
+    <div class="tab-pane fade" id="research">
+      <div class = "row">
+    <div class = "col-md-4 col-sm-4 col-xs-12">
+      <h2>Catch Statistics</h2>
+      <a href="https://shiny.aj2duncan.com/catch_statistics/" target = "_blank"><img src = "images/catch.jpg" class = "img-fluid"> </a>
+      <p>The <a href="https://shiny.aj2duncan.com/catch_statistics/" target = "_blank">Catch Statistics</a> app was built to demonstrate shiny and some of its capabilities. It uses the catch numbers (from public data available from Marine Scotland) to plot the total catch per river and </p>
+    </div>
+    </div>
+  </div>
+  
   </div>
   </div>
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted">Shiny server of <a href="https://aj2duncan.com">aj2duncan.com</a></p>
-      </div>
-    </footer>
+  <footer class="footer">
+    <div class = "container">
+    <span class = "text-muted">Shiny server of <a href="https://aj2duncan.com">aj2duncan.com</a></span></div>
+  </footer>
+    <!-- js for bootstrap 4 -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
