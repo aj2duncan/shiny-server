@@ -43,12 +43,12 @@ lesmis_tree = layout_as_tree(lesmis)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(theme = shinytheme("united"),
-                tags$head(
-                  tags$script(src = 'highlight.pack.js'),
-                  tags$script(src = 'shiny-showcase.js'),
-                  tags$link(rel = "stylesheet", type = "text/css", 
-                            href = "highlight.css")
-                ),
+                #tags$head(
+                #  tags$script(src = 'highlight.pack.js'),
+                #  tags$script(src = 'shiny-showcase.js'),
+                #  tags$link(rel = "stylesheet", type = "text/css", 
+                #            href = "highlight.css")
+                #),
                 # Application title
                 titlePanel("Plotting Networks Using sigmaNet"),
                 includeCSS("../../css/sliders.css"),
