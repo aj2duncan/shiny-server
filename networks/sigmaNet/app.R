@@ -51,7 +51,7 @@ ui <- fluidPage(theme = shinytheme("united"),
                 #),
                 # Application title
                 titlePanel("Plotting Networks Using sigmaNet"),
-                includeCSS("../../css/sliders.css"),
+                #includeCSS("../../css/sliders.css"),
                 useShinyjs(),
                 fluidRow(
                   column(6,
