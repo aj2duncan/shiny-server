@@ -1,37 +1,18 @@
-# load packages
 library(shiny)
-library(igraph)
-library(sigmaNet)
-library(magrittr)
+library(visNetwork)
 
-# Define UI for application that draws a histogram
-ui <- fluidPage(
-  sidebarLayout(
-    sidebarPanel(),
-    mainPanel(sigmaNetOutput("network"))
-  )  
-)
-
-server <- function(input, output, session) {
-  
-  output$network <- renderSigmaNet({
-    data(lesMis)
+server <- function(input, output) {
+  output$network <- renderVisNetwork({
+    # minimal example
+    nodes <- data.frame(id = 1:3)
+    edges <- data.frame(from = c(1,2), to = c(1,3))
     
-    clust <- cluster_edge_betweenness(lesMis)$membership
-    V(lesMis)$group <- clust
-    
-    layout <- layout_with_fr(lesMis)
-    
-    sig <- sigmaFromIgraph(lesMis, layout = layout) %>%
-      addNodeLabels(labelAttr = 'label') %>%
-      addEdgeSize(sizeAttr = 'value', minSize = .1, maxSize = 2) %>%
-      addNodeSize(sizeMetric = 'degree', minSize = 2, maxSize = 8) %>%
-      addNodeColors(colorAttr = 'group', colorPal = 'Set1')
-    sig
-    
+    visNetwork(nodes, edges)
   })
 }
 
-# Run the application 
-shinyApp(ui = ui, server = server)
+ui <- fluidPage(
+  visNetworkOutput("network")
+)
 
+shinyApp(ui = ui, server = server)
